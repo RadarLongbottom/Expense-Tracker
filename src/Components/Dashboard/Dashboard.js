@@ -11,7 +11,7 @@ function Dashboard() {
     useEffect(() => {
         getIncomes()
         getExpenses()
-    }, [])
+    })
 
     return (
         <DashboardStyled>
@@ -24,19 +24,19 @@ function Dashboard() {
                             <div className="income">
                                 <h2>Suma Przychodów</h2>
                                 <p>
-                                    {totalIncome()} zł
+                                    {totalIncome().toFixed(2)} zł
                                 </p>
                             </div>
                             <div className="expense">
                                 <h2>Suma Wydatków</h2>
                                 <p>
-                                    {totalExpenses()} zł
+                                    {totalExpenses().toFixed(2)} zł
                                 </p>
                             </div>
                             <div className="balance">
                                 <h2>Stan Konta</h2>
                                 <p>
-                                    {totalBalance()} zł
+                                    {totalBalance().toFixed(2)} zł
                                 </p>
                             </div>
                         </div>
