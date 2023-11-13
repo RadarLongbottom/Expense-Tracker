@@ -9,9 +9,13 @@ function Dashboard() {
     const {totalExpenses,incomes, expenses, totalIncome, totalBalance, getIncomes, getExpenses } = useGlobalContext()
 
     useEffect(() => {
-        getIncomes()
-        getExpenses()
-    })
+        const fetchData = async () => {
+            await getIncomes();
+            await getExpenses();
+        };
+    
+        fetchData();
+    }, []);
 
     return (
         <DashboardStyled>

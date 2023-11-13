@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
-import { bitcoin, book, calendar, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from "../../utils/Icons";
+import { bitcoin, book, phone, games, calendar, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from "../../utils/Icons";
 import Button from "../Button/Button";
 import { dateFormat } from "../../utils/dateFormat";
 
@@ -18,11 +18,11 @@ function IncomeItem({
 
     const categoryIcon = () => {
         switch(category) {
-            case 'salary': 
+            case 'Wypłata': 
                 return money;
             case 'freelancing':
                 return freelance
-            case 'investments':
+            case 'Inwestycje':
                 return stocks;
             case 'stocks':
                 return users;
@@ -32,7 +32,7 @@ function IncomeItem({
                 return card;
             case 'youtube':
                 return yt;
-            case 'other':
+            case 'Inne':
                 return piggy;
             default:
                 return ''
@@ -41,22 +41,26 @@ function IncomeItem({
 
     const expenseCatIcon = () => {
         switch (category) {
-            case 'education':
+            case 'Edukacja':
                 return book;
-            case 'groceries':
+            case 'Zakupy Spożywcze':
                 return food;
-            case 'health':
+            case 'Zdrowie':
                 return medical;
-            case 'subscriptions':
+            case 'Subskrypcje':
                 return tv;
-            case 'takeaways':
+            case 'Jedzenie':
                 return takeaway;
-            case 'clothing':
+            case 'Ubrania':
                 return clothing;
-            case 'travelling':
+            case 'Podróże':
                 return freelance;
-            case 'other':
+            case 'Inne':
                 return circle;
+            case 'Gry':
+                return games;
+            case 'Elektronika':
+                return phone;
             default:
                 return ''
         }
