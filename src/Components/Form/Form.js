@@ -7,82 +7,100 @@ import Button from "../Button/Button";
 import { plus } from "../../utils/Icons";
 
 function Form() {
-    const {addIncome, getIncomes, error, setError} = useGlobalContext()
+    const { addIncome, error, setError } = useGlobalContext();
     const [inputState, setInputState] = useState({
         title: '',
         amount: '',
         date: '',
         category: '',
         description: '',
-    })
+    });
 
-    const  {title, amount, date, category, description} = inputState;
+    const [descriptionCount, setDescriptionCount] = useState(0);
+
+    const { title, amount, date, category, description } = inputState;
 
     const handleInput = name => e => {
-        setInputState({...inputState, [name]: e.target.value})
-        setError('')
-    }
+        const value = e.target.value;
+        setInputState({ ...inputState, [name]: value });
+
+        if (name === 'description') {
+            setDescriptionCount(value.length);
+        }
+
+        setError('');
+    };
 
     const handleSubmit = e => {
-        e.preventDefault()
-        addIncome(inputState)
+        e.preventDefault();
+        addIncome(inputState);
         setInputState({
             title: '',
             amount: '',
             date: '',
             category: '',
-            description: '', 
-        })
-    }
+            description: '',
+        });
+    };
 
     return (
         <FormStyled onSubmit={handleSubmit}>
             {error && <p className="error">{error}</p>}
             <div className="input-control">
-                <input 
-                type='text' 
-                value={title}
-                name={'title'}
-                placeholder="Nazwa Przychodu"
-                onChange={handleInput('title')}
+                <input
+                    type='text'
+                    value={title}
+                    name={'title'}
+                    placeholder="Nazwa Przychodu"
+                    onChange={handleInput('title')}
                 />
             </div>
             <div className="input-control">
-                <input value={amount}
-                type='text' 
-                name={'amount'}
-                placeholder="Kwota Przychodu"
-                onChange={handleInput('amount')}
+                <input
+                    value={amount}
+                    type='text'
+                    name={'amount'}
+                    placeholder="Kwota Przychodu"
+                    onChange={handleInput('amount')}
                 />
             </div>
             <div className="input-control">
-                <DatePicker 
-                id='date'
-                placeholderText="Wprowadź Datę"
-                selected={date}
-                dateFormat="dd/MM/yyyy"
-                onChange={(date) => {
-                    setInputState({...inputState, date: date})
-                }}
+                <DatePicker
+                    id='date'
+                    placeholderText="Wprowadź Datę"
+                    selected={date}
+                    dateFormat="dd/MM/yyyy"
+                    onChange={(date) => {
+                        setInputState({ ...inputState, date: date });
+                    }}
                 />
             </div>
             <div className="selects input-control">
                 <select required value={category} name="category" id="category" onChange={handleInput('category')}>
-                    <option value=""  disabled >Wybierz Opcję</option>
+                    <option value="" disabled>Wybierz Opcję</option>
                     <option value="Wypłata">Wypłata</option>
                     <option value="Inwestycje">Inwestycje</option>
                     <option value="bank">Transfer Bankowy</option>
                     <option value="bank">BLIK</option>
                     <option value="bank">Przelew Przychodzący</option>
-                    <option value="Inne">Inne</option>  
+                    <option value="Inne">Inne</option>
                 </select>
             </div>
             <div className="input-control">
-                <textarea name="description" value={description} placeholder='Wprowadź Opis' id="description" cols="30" rows="4" onChange={handleInput('description')}></textarea>
+                <textarea
+                    name="description"
+                    value={description}
+                    placeholder='Wprowadź Opis'
+                    id="description"
+                    cols="30"
+                    rows="4"
+                    onChange={handleInput('description')}
+                ></textarea>
+                <p className="character-count">{`${descriptionCount}/30`}</p>
             </div>
 
             <div className="submit-btn">
-                <Button 
+                <Button
                     name={'Dodaj przychód'}
                     icon={plus}
                     bPad={'.8rem 1.6rem'}
@@ -92,10 +110,11 @@ function Form() {
                 />
             </div>
         </FormStyled>
-    )
+    );
 }
 
 const FormStyled = styled.form`
+    
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -140,5 +159,11 @@ const FormStyled = styled.form`
             }
         }
     }
+    .character-count {
+        margin-top: 0.5rem;
+        font-size: 12px;
+        color: rgba(34, 34, 96, 0.4);
+    }
 `;
-export default Form
+
+export default Form;

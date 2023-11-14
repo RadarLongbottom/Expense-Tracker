@@ -16,12 +16,20 @@ function ExpenseForm() {
         description: '',
     })
 
+    const [descriptionCount, setDescriptionCount] = useState(0);
+
     const  {title, amount, date, category, description} = inputState;
 
     const handleInput = name => e => {
-        setInputState({...inputState, [name]: e.target.value})
-        setError('')
-    }
+        const value = e.target.value;
+        setInputState({ ...inputState, [name]: value });
+
+        if (name === 'description') {
+            setDescriptionCount(value.length);
+        }
+
+        setError('');
+    };
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -82,7 +90,15 @@ function ExpenseForm() {
                 </select>
             </div>
             <div className="input-control">
-                <textarea name="description" value={description} placeholder='Wprowadź Opis' id="description" cols="30" rows="4" onChange={handleInput('description')}></textarea>
+                <textarea name="description" 
+                value={description} 
+                placeholder='Wprowadź Opis' 
+                id="description" 
+                cols="30" 
+                rows="4" 
+                onChange={handleInput('description')}
+                ></textarea>
+                <p className="character-count">{`${descriptionCount}/30`}</p>
             </div>
 
             <div className="submit-btn">
@@ -143,6 +159,11 @@ const ExpenseFormStyled = styled.form`
                 background: var(--color-green) !important;
             }
         }
+    }
+    .character-count {
+        margin-top: 0.5rem;
+        font-size: 12px;
+        color: rgba(34, 34, 96, 0.4);
     }
 `;
 export default ExpenseForm
