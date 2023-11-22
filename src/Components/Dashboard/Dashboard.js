@@ -21,6 +21,10 @@ function Dashboard() {
         <DashboardStyled>
             <InnerLayout>
                 <h1>Wszystkie Transakcje</h1>
+                <div className="labels">
+                    <h2><span>Wydatki</span></h2>
+                    <h2><span>Przychody</span></h2>
+                </div>
                 <div className="stats-con">
                     <div className="chart-con">
                         <Chart />
@@ -73,10 +77,28 @@ function Dashboard() {
 }
 
 const DashboardStyled = styled.div`
-    .stats-con{
+    
+.labels {
+    display: grid;
+    grid-template-columns: repeat(3, 0fr);
+    justify-content: space-between;
+    gap: 10px;  // Dostosuj wartość gap według potrzeb
+    padding: 10px 0;
+
+    h2 {
+        margin-right: 25px;
+        margin-bottom: 0;
+    }
+
+    span {
+        font-weight: bold;
+    }
+}
+        .stats-con{
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 2rem;
+        
         .chart-con{
             grid-column: 1 / 4;
             height: 400px;
@@ -114,6 +136,7 @@ const DashboardStyled = styled.div`
                 }
             }
         }
+        
 
         .history-con{
             grid-column: 4 / -1;

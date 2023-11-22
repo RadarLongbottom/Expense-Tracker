@@ -39,10 +39,9 @@ function Transactions() {
             <InnerLayout>
                 <h1>Transakcje</h1>
 
-                {/* Date range selection with the same styling as in Form */}
                 <div className="date-range">
                     <DatePicker
-                        className="input-control"  // Apply the same styling as input controls
+                        className="input-control"
                         selected={dateRange.startDate}
                         onChange={(date) => setDateRange({ ...dateRange, startDate: date })}
                         selectsStart
@@ -52,7 +51,7 @@ function Transactions() {
                         dateFormat="dd/MM/yyyy"
                     />
                     <DatePicker
-                        className="input-control"  // Apply the same styling as input controls
+                        className="input-control"
                         selected={dateRange.endDate}
                         onChange={(date) => setDateRange({ ...dateRange, endDate: date })}
                         selectsEnd
@@ -145,7 +144,6 @@ const TransactionsStyled = styled.div`
         }
     }
 
-    /* Additional styles for date range selection */
     .date-range {
         display: flex;
         gap: 1rem;
