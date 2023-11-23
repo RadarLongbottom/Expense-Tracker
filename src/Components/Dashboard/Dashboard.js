@@ -20,7 +20,7 @@ function Dashboard() {
     return (
         <DashboardStyled>
             <InnerLayout>
-                <h1>Wszystkie Transakcje</h1>
+                <h1>Panel Główny</h1>
                 <div className="labels">
                     <h2><span>Wydatki</span></h2>
                     <h2><span>Przychody</span></h2>
@@ -92,6 +92,7 @@ const DashboardStyled = styled.div`
 
     span {
         font-weight: bold;
+        margin-right: 10px;
     }
 }
         .stats-con{
